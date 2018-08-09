@@ -9,6 +9,139 @@
     <link rel="stylesheet" href="css/styles.css">
   </head>
   <body>
+    <header>
+      <div class="logo">YourApp&trade;</div>
+      <img class="avatar" src="http://via.placeholder.com/50x50" alt="avatar">
+      <p class="username">Your Name</p>
+    </header>
+
+    <nav>
+      <ul class="main-nav">
+        <li class="active"><a href="#">Dashboard</a></li>
+        <li><a href="#">Members</a></li>
+        <li><a href="#">Visits</a></li>
+        <li><a href="#">Settings</a></li>
+      </ul>
+    </nav>
+
+    <main class="container">
+      <div class="row">
+        <input type="search" name="search" value="" placeholder="Search">
+        <h1 class="dashboard">Dashboard</h1>
+        <div class="alert">
+          <p class="alert__msg">
+            <span>ALERT</span> You have a new notification! Click on the bell to see. <span class="close">&times;</span>
+          </p>
+        </div>
+        <div class="traffic">
+          <h2>Traffic</h2>
+          <img src="http://via.placeholder.com/800x400" alt="line chart">
+        </div>
+      </div>
+      <div class="row clearfix">
+        <div class="daily col-6">
+          <h2>Daily Traffic</h2>
+          <img src="http://via.placeholder.com/400x200" alt="bar chart">
+        </div>
+        <div class="mobile col-6">
+          <h2>Mobile Users</h2>
+          <img src="http://via.placeholder.com/400x200" alt="doughnut chart">
+        </div>
+      </div>
+      <div class="row clearfix">
+        <div class="social">
+          <h2>Social Stats</h2>
+          <div class="social__box col-4">
+            <h3>Twitter</h3>
+            <p>10,345</p>
+          </div>
+          <div class="social__box col-4">
+            <h3>Facebook</h3>
+            <p>8,739</p>
+          </div>
+          <div class="social__box col-4">
+            <h3>Google&plus;</h3>
+            <p>2,530</p>
+          </div>
+        </div>
+      </div>
+      <div class="row clearfix">
+        <div class="members col-6">
+          <div class="member">
+            <img src="http://via.placeholder.com/50x50" alt="avatar">
+            <p>Victoria Chambers</p>
+            <p>victoria.chambers@example.com</p>
+          </div>
+          <div class="member">
+            <img src="http://via.placeholder.com/50x50" alt="avatar">
+            <p>Dale Byrd</p>
+            <p>dale.byrd@example.com</p>
+          </div>
+          <div class="member">
+            <img src="http://via.placeholder.com/50x50" alt="avatar">
+            <p>Dawn Wood</p>
+            <p>dawn.wood@example.com</p>
+          </div>
+          <div class="member">
+            <img src="http://via.placeholder.com/50x50" alt="avatar">
+            <p>Dan Oliver</p>
+            <p>doliver@example.com</p>
+          </div>
+        </div>
+        <div class="activity col-6">
+          <div class="post">
+            <img src="http://via.placeholder.com/50x50" alt="avatar">
+            <p><span class="user__name">Victoria Chambers</span> commented on YourApp's SEO Tips</p>
+            <p>4 hours ago</p>
+          </div>
+          <div class="post">
+            <img src="http://via.placeholder.com/50x50" alt="avatar">
+            <p><span class="user__name">Dale Byrd</span> liked the post Facebook's Changes for 2018</p>
+            <p>5 hours ago</p>
+          </div>
+          <div class="post">
+            <img src="http://via.placeholder.com/50x50" alt="avatar">
+            <p><span class="user__name">Dawn Wood</span> commented on Facebook's Changes for 2018</p>
+            <p>5 hours ago</p>
+          </div>
+          <div class="post">
+            <img src="http://via.placeholder.com/50x50" alt="avatar">
+            <p><span class="user__name">Dan Oliver</span> posted YourApp's SEO Tips</p>
+            <p>1 day ago</p>
+          </div>
+        </div>
+      </div>
+      <div class="row clearfix">
+        <div class="contact col-6">
+          <h2>Message User</h2>
+          <form action="#" method="post">
+            <input type="text" placeholder="Search for User">
+            <textarea name="name" rows="8" cols="20">Message for User</textarea>
+            <button type="submit" name="button">Send</button>
+          </form>
+        </div>
+        <div class="settings col-6">
+          <form action="#" method="post">
+            <p>Send Email Notifications</p>
+            <input type="checkbox" name="sendEmail" value="On">
+            <input type="checkbox" name="sendEmail" value="Off">
+            <p>Profile Settings</p>
+            <input type="checkbox" name="publicProfile" value="On">
+            <input type="checkbox" name="publicProfile" value="Off">
+            <select class="timezone" name="timezone">
+              <option value="eastern">Eastern</option>
+              <option value="central">Central</option>
+              <option value="mountain">Mountain</option>
+              <option value="pacific">Pacific</option>
+            </select>
+            <button type="submit" name="save">Save</button>
+            <button type="reset" name="button">Cancel</button>
+          </form>
+        </div>
+      </div>
+    </main>
+
+
 
     <script src="js/scripts.js"></script>
   </body>
