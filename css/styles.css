@@ -23,6 +23,11 @@ h2 {
   margin: 0.5em 0 1em;
 }
 
+.bell {
+  padding: 0.5em;
+  cursor: pointer;
+}
+
 .avatar {
   border-radius: 50%;
   border: 2px solid #fff;
@@ -156,13 +161,42 @@ h2 {
 .social {
   background: lightgrey;
   border: 1px solid darkgrey;
-  padding: 5px;
+  padding: 1em 1em 1em 2em;
   box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .social:last-of-type {
   margin-right: 0;
 }
+
+.icon-container {
+  padding: 0.5em;
+  background: #7377bd;
+  border-radius: 50%;
+}
+
+.social-icon {
+  fill: #fff;
+}
+
+.social-text {
+  margin-left: 1.7em;
+}
+
+.social-heading {
+  margin: 0;
+  color: #7377bd;
+}
+
+.large {
+  font-size: 3em;
+  font-weight: 300;
+  margin: 0;
+}
+
 
 @media screen and (min-width: 768px) {
   header {
@@ -170,6 +204,13 @@ h2 {
   }
   .logo {
     margin: 1em auto 1em 0;
+  }
+  .bell {
+    border-right: 1px solid #4c4b70;
+    padding: 0.7em;
+  }
+  .avatar {
+    margin: 0.5em 0.5em 0.5em 1em;
   }
   #dashboard {
     position: absolute;
@@ -189,7 +230,8 @@ h2 {
     float: left;
   }
   .col-4 {
-    width: 100%;
+    width: 49%;
+    float: left;
   }
   .social {
     margin-right: 0;
@@ -199,9 +241,10 @@ h2 {
 @media screen and (min-width: 1024px) {
   .col-4 {
     width: 32%;
-    float: left;
+    margin: 0;
   }
   .social {
     margin-right: 1.5%;
+    justify-content: center;
   }
 }
