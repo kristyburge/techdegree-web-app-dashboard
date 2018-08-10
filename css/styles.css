@@ -68,11 +68,12 @@ h2 {
 }
 
 .alert {
-  background: firebrick;
+  background: #4c4b70;
   color: #fff;
   border-radius: 5px;
   padding: 12px 24px;
   margin-bottom: 20px;
+  opacity: 0.9;
 }
 
 .alert span {
@@ -94,6 +95,30 @@ h2 {
 
 .close:hover {
   opacity: 0.5;
+}
+
+.closeAlert {
+  animation: fade 0.8s ease-in-out forwards 1;
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0.5;
+    margin-bottom: 0;
+  }
+
+  40% {
+    opacity: 0;
+  }
+
+  90% {
+    margin-bottom: -80px;
+  }
+
+  100% {
+    opacity: 0;
+    margin-bottom: -80px;
+  }
 }
 
 .container {
