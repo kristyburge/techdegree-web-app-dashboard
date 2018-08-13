@@ -16,11 +16,12 @@ header {
 }
 
 h1, h2, h3, h4 {
-  color: #444;
+  color: #555;
 }
 
 h2 {
   margin-top: 0;
+  text-transform: uppercase;
 }
 
 .logo {
