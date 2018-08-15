@@ -7,6 +7,41 @@ Chart.defaults.global.defaultFontFamily = "'Work Sans', Helvetica, Tahoma, Arial
 // ===========
 // Line Chart
 // ===========
+// const lctx = document.getElementById('lineChart');
+const lctx = document.getElementById('lineChart').getContext('2d');
+const fillPattern = lctx.createLinearGradient(0,500,0,0);
+  fillPattern.addColorStop(0,"rgba(76, 75, 112, 0.9)");
+  fillPattern.addColorStop(0.3,"rgba(76, 75, 112, 0.5)");
+  fillPattern.addColorStop(1,"rgba(76, 75, 112, 0.3)");
+const lineChart = new Chart(lctx, {
+  type: 'line',
+  data: {
+    labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6', 'Week 7', 'Week 8'],
+    datasets: [
+      {
+        label: 'In thousands',
+        backgroundColor: fillPattern,
+        borderColor: '#555',
+        data: [155, 2222, 513, 1789, 2456, 456, 1146, 250],
+        fill: true,
+        lineTension: 0,
+        pointBackgroundColor: '#fff',
+        pointBorderColor: '#555',
+        pointBorderWidth: 3,
+        pointHoverBorderWidth: 4,
+        pointRadius: 5,
+        pointHoverRadius: 7
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    legend: {
+      display: false
+    }
+  }
+});
+
 
 
 
@@ -31,6 +66,7 @@ const barChart = new Chart(bctx, {
     }]
   },
   options: {
+    responsive: true,
     legend: {
       display: false
     }
@@ -55,7 +91,7 @@ const doughnutChart = new Chart(dctx, {
     ]
     },
     options: {
-      // options go here
+      responsive: true,
       cutoutPercentage: 55,
       legend: {
         position: 'right',
