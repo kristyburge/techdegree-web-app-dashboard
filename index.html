@@ -6,6 +6,7 @@
     <title>Web App Dashboard</title>
     <link rel="stylesheet" href="css/normalize.css">
     <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,700" rel="stylesheet">
+    <link rel="stylesheet" href="css/toggle-switch.css">
     <link rel="stylesheet" href="css/styles.css">
   </head>
   <body>
@@ -174,29 +175,46 @@
       <div class="row clearfix">
         <div class="contact col-6">
           <h2>Message User</h2>
-          <form action="#" method="post">
+          <form action="#" class="contact-form" method="post">
             <input type="text" placeholder="Search for User">
-            <textarea name="name" rows="8" cols="20">Message for User</textarea>
-            <button type="submit" name="button">Send</button>
+            <textarea name="name" rows="8" cols="20" placeholder="Message for user"></textarea>
+            <button class="btn btn--default" type="submit" name="button">Send</button>
           </form>
         </div>
         <div id="settings" class="col-6">
           <h2>Settings</h2>
-          <form action="#" method="post">
-            <p>Send Email Notifications</p>
-            <input type="checkbox" name="sendEmail" value="On">
-            <input type="checkbox" name="sendEmail" value="Off">
-            <p>Profile Settings</p>
-            <input type="checkbox" name="publicProfile" value="On">
-            <input type="checkbox" name="publicProfile" value="Off">
+          <form action="#" method="post" class="profile-settings">
+            <label class="switch-light switch-ios" onclick="">
+              <input type="checkbox">
+              <strong>
+                Send Email Notifications
+              </strong>
+              <span>
+                <span>Off</span>
+                <span>On</span>
+                <a></a>
+              </span>
+            </label>
+            <label class="switch-light switch-ios" onclick="">
+              <input type="checkbox">
+              <strong>
+              Set Profile to Public
+              </strong>
+              <span>
+                <span>Off</span>
+                <span>On</span>
+                <a></a>
+              </span>
+            </label>
             <select class="timezone" name="timezone">
               <option value="eastern">Eastern</option>
               <option value="central">Central</option>
               <option value="mountain">Mountain</option>
+              <option value="arizona">Arizona</option>
               <option value="pacific">Pacific</option>
             </select>
-            <button type="submit" name="save">Save</button>
-            <button type="reset" name="button">Cancel</button>
+            <button class="btn btn--default" type="submit" name="save">Save</button>
+            <button class="btn btn--cancel" type="reset" name="button">Cancel</button>
           </form>
         </div>
       </div>

@@ -263,6 +263,99 @@ h2 {
   margin: 0;
 }
 
+.contact-form {
+  width: 100%;
+}
+
+.contact-form * {
+  display: block;
+  margin: 20px 0;
+}
+
+input[type="text"],
+textarea {
+  width: 87%;
+  padding: 0;
+  border: 2px solid #ccc;
+  border-radius: 3px;
+  padding: 7px;
+  background-color: #e8e9eB;
+  color: #555;
+  transition: all 0.5s;
+}
+
+input[type="text"]:focus,
+textarea:focus {
+  outline: none;
+  border: 2px solid #7377bd;
+  background-color: #fefefe;
+}
+
+.btn {
+  background: none;
+  color: inherit;
+  border: 2px solid #4c4b70;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+  width: 90%;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 1px;
+  font-size: 1.2em;
+  transition: all 0.7s;
+}
+
+.btn--default {
+  background: #4c4b70;
+  color: #fff;
+}
+
+.btn--cancel {
+  background: #878787;
+  border-color: #878787;
+  color: #fff;
+}
+
+.btn--default:hover {
+  color: #4c4b70;
+  background: #fff;
+}
+
+.btn--cancel:hover {
+  color: #878787;
+  border-color: #878787;
+  background: #fff;
+}
+
+.profile-settings * {
+  margin: 0 auto;
+}
+
+#settings .btn {
+  width: 48%;
+}
+
+#settings select {
+  display: block;
+  margin: 0 0 20px;
+  width: 60%;
+}
+
+.switch-ios.switch-light {
+  margin-bottom: 40px;
+}
+
+.switch-ios.switch-light > span {
+  margin-top: 5px;
+  max-width: 30%;
+}
+.switch-ios.switch-light input:checked ~ span a {
+  left: 90%;
+}
+
 
 @media screen and (min-width: 768px) {
   header {
@@ -311,6 +404,18 @@ h2 {
   .social {
     margin-right: 0;
   }
+  .switch-ios.switch-light > strong {
+    display: inline-block;
+    width: 50%;
+  }
+
+  .switch-ios.switch-light > span {
+    top: 10px;
+    left: 70px;
+    width: 25%;
+    display: inline-block;
+  }
+
 }
 
 @media screen and (min-width: 1024px) {
