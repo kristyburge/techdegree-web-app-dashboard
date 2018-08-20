@@ -20,7 +20,7 @@ h1, h2, h3, h4 {
 }
 
 h2 {
-  margin-top: 0;
+  margin-top: 1.34em;
   text-transform: uppercase;
 }
 
@@ -38,6 +38,8 @@ h2 {
   border: 2px solid #fff;
   box-shadow: 1px 1px 0 #444;
   margin: 0.5em;
+  max-height: 48px;
+  max-width: 48px;
 }
 
 .username a {
@@ -46,13 +48,48 @@ h2 {
   color: #fff;
 }
 
+.mobile-nav {
+  width: 50px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.mobile-nav span {
+  display: inline-block;
+  width: 50px;
+  height: 7px;
+  margin-bottom: 7px;
+  background: #444;
+  border: 1px solid #333;
+  transition: transform 0.7s, opacity 0.3s;
+}
+
+.mobile-nav:hover span:first-child {
+  transform: rotate(45deg) translate(10px, 5px);
+  transform-origin: 0 50%;
+}
+
+.mobile-nav:hover span:nth-child(2n) {
+  opacity: 0;
+}
+
+.mobile-nav:hover span:last-child {
+  transform: rotate(-45deg) translate(-6px, 6px);
+  transform-origin: 0 0;
+}
+
 .main-nav {
+  display: none;
+  margin: 0;
+  padding: 0;
+}
+
+.main-nav.show {
   display: flex;
   flex-direction: column;
   list-style: none;
   background: #4c4b70;
-  margin: 0;
-  padding: 0;
 }
 
 .main-nav li a {
@@ -82,8 +119,9 @@ h2 {
   color: #fff;
   border-radius: 5px;
   padding: 12px 24px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   opacity: 0.9;
+  position: relative;
 }
 
 .alert span {
@@ -109,12 +147,13 @@ h2 {
 
 .closeAlert {
   animation: fade 0.8s ease-in-out forwards 1;
+  margin: 0;
+  padding: 0;
 }
 
 @keyframes fade {
   0% {
     opacity: 0.5;
-    margin-bottom: 0;
   }
 
   40% {
@@ -122,26 +161,35 @@ h2 {
   }
 
   90% {
-    margin-bottom: -80px;
+    transform: translateY(-80px);
   }
 
   100% {
     opacity: 0;
-    margin-bottom: -80px;
+    transform: translateY(-80px);
   }
 }
 
 .container {
   padding: 0 30px;
   margin: 0 auto;
-  max-width: 1024px;
+  max-width: 948px;
   position: relative;
 }
 
 .row {
   width: 100%;
   border-bottom: 2px solid #9e9e9e;
-  padding: 2em 0;
+  padding: 0;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.chart-container {
+  margin-bottom: 40px;
 }
 
 /*
@@ -172,11 +220,20 @@ h2 {
   align-self: flex-start;
 }
 
+.user__name {
+  color: #4c4b70;
+}
+
 .member,
 .post {
   border-bottom: 1px solid #D3D3D3;
   padding: 40px 0;
   margin-right: 3em;
+}
+
+.member:last-of-type,
+.post:last-of-type {
+  padding-bottom: 25px;
 }
 
 .member:first-of-type,
@@ -198,22 +255,37 @@ h2 {
   margin-bottom: 20px;
 }
 
-.member a {
+.user__email {
   text-decoration: none;
   color: #4c4b70;
 }
 
+.user__email:hover {
+  text-decoration: underline;
+}
+
+.last-seen {
+  display: inline-block;
+}
+
+.timestamp {
+  float: right;
+}
+
 .more {
-  display: block;
+  display: inline-block;
+  float: right;
+  margin-top: -10px;
   font-size: 2em;
   font-weight: 700;
   color: #555;
   cursor: pointer;
-  transition: transform 1s ease-in-out;
+  transition: transform 1s ease-in-out, opacity 0.3s ease-in-out;
 }
 
 .more:hover {
   transform: translateX(5px);
+  opacity: 0.7;
 }
 
 .more:active {
@@ -228,6 +300,7 @@ h2 {
   border: 1px solid #a9a9a9;
   color: #444;
   padding: 1em 1em 1em 2em;
+  margin-bottom: 40px;
   box-sizing: border-box;
   display: flex;
   align-items: center;
@@ -242,6 +315,8 @@ h2 {
   padding: 0.5em;
   background: #7377bd;
   border-radius: 50%;
+  min-width: 85px;
+  min-height: 85px;
 }
 
 .social-icon {
@@ -369,32 +444,54 @@ textarea:focus {
     padding: 0.7em;
   }
   .avatar {
-    height: 48px;
-    width: 48px;
     margin: 0.5em 0.5em 0.5em 1em;
+  }
+  .main-nav{
+    display: flex;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    background: #4c4b70;
+  }
+  .main-nav li {
+    border-left: 8px solid transparent;
+    padding-right: 8px;
+    border-right: 2px solid #4c4b70;
+  }
+  .main-nav li.active {
+    border-left: 8px solid #92CCA6;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+  }
+
+  .mobile-nav {
+    display: none;
   }
   .member time {
     align-self: flex-end;
     margin-top: -40px;
   }
   #dashboard {
-    position: absolute;
-    top: 35px;
-    margin-top: 0;
+    margin-top: 15px;
+    padding: 20px 0;
   }
   .search {
     position: absolute;
     right: 45px;
+    top: 33px;
   }
-  .alert {
-    margin-top: 70px;
+  .wrapper {
+    flex-direction: row;
   }
   .col-6 {
     width: 50%;
     float: left;
+    border-right: 2px solid #9e9e9e;
+    min-height: 300px;
   }
   .col-6:nth-child(2n) {
-    border-left: 2px solid #9e9e9e;
+    border-right: none;
     padding-left: 2em;
   }
   .col-4 {
@@ -425,6 +522,7 @@ textarea:focus {
   }
   .social {
     margin-right: 1.5%;
+    margin-bottom: 20px;
     justify-content: center;
   }
 }
