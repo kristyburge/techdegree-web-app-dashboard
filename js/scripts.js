@@ -19,7 +19,6 @@ row.addEventListener('click', function(e){
     });
 });
 
-
 function toggleNav(){
     const mainNav = document.querySelector('.main-nav');
     mainNav.classList.toggle('show');
@@ -44,3 +43,56 @@ notificationBell.addEventListener('click', function(){
   createAlert('Victoria accepted your friend request.', 'NEW');
   createAlert('Dale sent you a friend request.', 'REVIEW');
 });
+
+// Message User Widget:
+// Display error messages
+// ==========================
+ const user = document.querySelector('.user-search');
+ const message = document.querySelector('.user-message');
+ const submit = document.querySelector('#message-user');
+ submit.addEventListener('click', function(e){
+    // prevent page from reloading
+    e.preventDefault();
+    // 1. check if user is selected
+    // 2. make sure message field is not empty
+    if (user.value === '') {
+      alert('Please select the user you want to message.');
+    } else if (message.value === '') {
+      alert('Please enter a message');
+    } else {
+      // SUCCESS:
+      // 1. Save form values
+      const storeMsg = {
+        username: user.value,
+        msg: message.value
+      };
+
+      // 2. Hide the form and display a thank you message
+      const contactDiv = document.querySelector('.contact');
+      const contactForm = document.querySelector('.contact-form');
+      const thanks = document.createElement('p');
+      const newBtn = document.createElement('button');
+
+      contactForm.style.display = 'none';
+      thanks.innerHTML = `Your message to ${storeMsg.username} has been sent!`;
+      newBtn.classList.add('btn');
+      newBtn.classList.add('btn--default');
+      newBtn.innerHTML = 'Send another message?';
+
+      // Append to the DOM
+      contactDiv.appendChild(thanks);
+      contactDiv.appendChild(newBtn);
+
+      // Give user the option to send another message.
+      newBtn.addEventListener('click', function(){
+        // Clear form
+        user.value = '';
+        message.value = '';
+        // Display a new contact form
+        contactForm.style.display = 'block';
+        // Remove thanks message and new button
+        thanks.style.display = 'none';
+        newBtn.style.display = 'none';
+      });
+    }
+ });
