@@ -1,24 +1,16 @@
+// Alert notifications
 const close = document.querySelectorAll('.close');
 const alertBox = document.querySelectorAll('.alert');
 const notificationBell = document.querySelector('.bell-container');
 const row = document.querySelector('.row');
 const traffic = document.querySelector('.traffic');
+// Message user widget
+const message = document.querySelector('.user-message');
+const submit = document.querySelector('#message-user');
+const userInput = document.querySelector('.user-search');
+const suggest = document.querySelector('.suggest');
 
-// Close the alert box
-row.addEventListener('click', function(e){
-    alertBox.forEach(function(){
-      const currentAlert = e.target.parentNode.parentNode;
-      const paragraph = e.target.parentNode;
-      if (currentAlert.classList.contains('alert')) {
-        currentAlert.classList.add('closeAlert');
-        paragraph.style.display = 'none';
-        paragraph.style.padding = 0;
-        paragraph.style.margin = 0;
-      }
-
-    });
-});
-
+// Toggle mobile nav menu
 function toggleNav(){
     const mainNav = document.querySelector('.main-nav');
     mainNav.classList.toggle('show');
@@ -38,6 +30,21 @@ function createAlert(msg, type){
   dashboard.insertBefore(alertDiv, traffic);
 }
 
+// Close the alert box
+row.addEventListener('click', function(e){
+    alertBox.forEach(function(){
+      const currentAlert = e.target.parentNode.parentNode;
+      const paragraph = e.target.parentNode;
+      if (currentAlert.classList.contains('alert')) {
+        currentAlert.classList.add('closeAlert');
+        paragraph.style.display = 'none';
+        paragraph.style.padding = 0;
+        paragraph.style.margin = 0;
+      }
+
+    });
+});
+
 notificationBell.addEventListener('click', function(){
   // Display the user's alerts
   createAlert('Victoria accepted your friend request.', 'NEW');
@@ -45,17 +52,15 @@ notificationBell.addEventListener('click', function(){
 });
 
 // Message User Widget:
-// Display error messages
-// ==========================
- const user = document.querySelector('.user-search');
- const message = document.querySelector('.user-message');
- const submit = document.querySelector('#message-user');
+// =====================
+// DISPLAY ERROR MESSAGES
+// =====================
  submit.addEventListener('click', function(e){
     // prevent page from reloading
     e.preventDefault();
     // 1. check if user is selected
     // 2. make sure message field is not empty
-    if (user.value === '') {
+    if (userInput.value === '') {
       alert('Please select the user you want to message.');
     } else if (message.value === '') {
       alert('Please enter a message');
@@ -63,7 +68,7 @@ notificationBell.addEventListener('click', function(){
       // SUCCESS:
       // 1. Save form values
       const storeMsg = {
-        username: user.value,
+        username: userInput.value,
         msg: message.value
       };
 
@@ -86,7 +91,7 @@ notificationBell.addEventListener('click', function(){
       // Give user the option to send another message.
       newBtn.addEventListener('click', function(){
         // Clear form
-        user.value = '';
+        userInput.value = '';
         message.value = '';
         // Display a new contact form
         contactForm.style.display = 'block';
@@ -96,3 +101,79 @@ notificationBell.addEventListener('click', function(){
       });
     }
  });
+
+ // ===================
+ // SEARCH USERS
+ // ===================
+// const endpoint = 'https://uinames.com/api/?region=united%20states&amount=50';
+const users = [
+  {
+    first: 'Victoria',
+    last: 'Chambers'
+  },
+  {
+    first: 'Dale',
+    last: 'Byrd'
+  },
+  {
+    first: 'Dawn',
+    last: 'Wood'
+  },
+  {
+    first: 'Dan',
+    last: 'Oliver'
+  }
+];
+
+// fetch(endpoint)
+//   .then(blob => blob.json())
+//   .then(data => users.push(...data));
+
+function findMatches(userToMatch, users) {
+  return users.filter(person => {
+    const regex = new RegExp(userToMatch, 'gi');
+    return person.first.match(regex) || person.last.match(regex);
+  });
+}
+
+function displayMatches(){
+  // Get the data
+  const matchArray = findMatches(this.value, users)
+
+  // Loop over the data
+  const html = matchArray.map(user => {
+    return `
+      <li class="suggest-member">${user.first} ${user.last}<input type="hidden" value="${user.first} ${user.last}">
+      </li>
+    `;
+  }).join('');
+
+  // Append the suggestions to the html
+  suggest.innerHTML = html;
+
+  // Save the array of suggested members
+  const suggestions = document.querySelectorAll('.suggest-member');
+
+  // Loop through the suggestions and listen for click event
+  suggestions.forEach(function(suggestion){
+    suggestion.addEventListener('click', function(){
+      // Save the value of the click and use in the input
+      const save = suggestion.firstElementChild.value;
+      userInput.value = save;
+
+      // Toggle the active class on click
+      suggestion.classList.toggle('item-active');
+    });
+  });
+}
+
+
+// TODO: Remove the other list items when one is selected.
+
+// TODO: Open the list if user starts to type again.
+
+
+
+// listen for keyup and change events to display user matches
+userInput.addEventListener('keyup', displayMatches);
+userInput.addEventListener('change', displayMatches);

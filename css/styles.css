@@ -114,6 +114,20 @@ h2 {
   border-radius: 5px;
 }
 
+.search-container {
+  position: relative;
+  display: inline-block;
+}
+
+.user-search {
+
+}
+
+.item-active {
+  color: orange;
+  font-weight: 700;
+}
+
 .alert {
   background: #4c4b70;
   color: #fff;
@@ -347,6 +361,7 @@ h2 {
   margin: 20px 0;
 }
 
+.user-search,
 input[type="text"],
 textarea {
   width: 87%;
@@ -364,6 +379,16 @@ textarea:focus {
   outline: none;
   border: 2px solid #7377bd;
   background-color: #fefefe;
+}
+
+.suggest {
+  padding-left: 0;
+}
+
+.suggest-member {
+  border-bottom: 1px solid #aaa;
+  padding: 20px;
+  cursor: pointer;
 }
 
 .btn {
