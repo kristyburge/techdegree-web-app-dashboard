@@ -27,6 +27,16 @@ h2 {
 
 .logo {
   margin: 0.5em 0 1em;
+  font-size: 1.3em;
+  letter-spacing: 2px;
+}
+
+.heavy {
+  font-weight: 700;
+}
+
+.light {
+  font-weight: 300;
 }
 
 .bell {
@@ -484,8 +494,24 @@ textarea:focus {
   left: 90%;
 }
 
+.bell-container {
+  position: relative;
+}
+.new {
+    width: 13px;
+    height: 13px;
+    content: "";
+    background: #92cca6;
+    border: 1px solid #92cca6;
+    border-radius: 50%;
+    position: absolute;
+    top: 11px;
+    left: 30px;
+}
+
 
 @media screen and (min-width: 768px) {
+
   header {
     flex-direction: row;
   }
