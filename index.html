@@ -68,7 +68,7 @@
 
       <main class="container">
         <div class="row">
-          <input class="search" type="search" name="search" value="" placeholder="Search">
+          <input class="search" type="search" name="search" placeholder="Search...">
           <h1 id="dashboard">Dashboard</h1>
           <div class="alert">
             <p class="alert__msg">
@@ -77,7 +77,7 @@
           </div>
           <div class="traffic">
             <h2>Traffic</h2>
-            <div class="chart-container">
+            <div class="chart-container" style="position: relative; height:50vh; width:80vw">
               <canvas id="lineChart"></canvas>
             </div>
           </div>
@@ -85,13 +85,13 @@
         <div class="row clearfix">
           <div class="daily col-6">
             <h2>Daily Traffic</h2>
-            <div class="chart-container">
+            <div class="chart-container" style="position: relative; max-height:40vh; max-width:80vw">
               <canvas id="barChart"></canvas>
             </div>
           </div>
           <div class="mobile col-6">
             <h2>Mobile Users</h2>
-            <div class="chart-container">
+            <div class="chart-container" style="position: relative; max-height:40vh; max-width:80vw">
               <canvas id="doughnutChart"></canvas>
             </div>
           </div>
@@ -235,7 +235,7 @@
         </div>
       </main>
   </div><!-- .wrapper -->
-
+  <footer class="footer"></footer>
     <!-- Chart.js library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js" integrity="sha256-CfcERD4Ov4+lKbWbYqXD6aFM9M51gN4GUEtDhkWABMo=" crossorigin="anonymous"></script>
     <script src="js/charts.js"></script>
