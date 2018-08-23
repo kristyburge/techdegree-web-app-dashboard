@@ -14,6 +14,8 @@ const suggest = document.querySelector('.suggest');
 function toggleNav(){
     const mainNav = document.querySelector('.main-nav');
     mainNav.classList.toggle('show');
+    const mobileNav = document.querySelector('.mobile-nav');
+    mobileNav.classList.toggle('open');
 }
 
 // Helper function to create notification alerts

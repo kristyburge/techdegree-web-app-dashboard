@@ -7,8 +7,9 @@ body {
 
 header {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
   padding: 0.5em 1em;
   background: #7377bd;
   color: #fff;
@@ -50,32 +51,34 @@ h2 {
 
 .mobile-nav {
   width: 50px;
-  position: absolute;
-  top: 10px;
-  left: 10px;
+  margin-bottom: 30px;
+  position: relative;
+  top: 15px;
+  left: 20px;
 }
 
 .mobile-nav span {
   display: inline-block;
   width: 50px;
-  height: 7px;
-  margin-bottom: 7px;
+  height: 5px;
+  margin-bottom: 3px;
   background: #444;
   border: 1px solid #333;
   transition: transform 0.7s, opacity 0.3s;
+  cursor: pointer;
 }
 
-.mobile-nav:hover span:first-child {
-  transform: rotate(45deg) translate(10px, 5px);
-  transform-origin: 0 50%;
+.mobile-nav.open span:first-child {
+  transform: rotate(45deg) translate(5px, 0);
+  transform-origin: 0 0;
 }
 
-.mobile-nav:hover span:nth-child(2n) {
+.mobile-nav.open span:nth-child(2n) {
   opacity: 0;
 }
 
-.mobile-nav:hover span:last-child {
-  transform: rotate(-45deg) translate(-6px, 6px);
+.mobile-nav.open span:last-child {
+  transform: rotate(-45deg) translate(-4px, 0);
   transform-origin: 0 0;
 }
 
@@ -112,6 +115,7 @@ h2 {
 .search {
   padding: 10px 20px;
   border-radius: 5px;
+  margin-top: 40px;
 }
 
 .search-container {
@@ -492,6 +496,9 @@ textarea:focus {
 
   .mobile-nav {
     display: none;
+  }
+  .search {
+    margin-top: 0;
   }
   .member time {
     align-self: flex-end;
