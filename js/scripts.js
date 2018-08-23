@@ -4,6 +4,7 @@ const alertBox = document.querySelectorAll('.alert');
 const notificationBell = document.querySelector('.bell-container');
 const row = document.querySelector('.row');
 const traffic = document.querySelector('.traffic');
+let isNew = true;
 // Message user widget
 const message = document.querySelector('.user-message');
 const submit = document.querySelector('#message-user');
@@ -47,10 +48,22 @@ row.addEventListener('click', function(e){
     });
 });
 
+
 notificationBell.addEventListener('click', function(){
-  // Display the user's alerts
-  createAlert('Victoria accepted your friend request.', 'NEW');
-  createAlert('Dale sent you a friend request.', 'REVIEW');
+  const newAlerts = document.querySelector('.new');
+
+  // Make sure to run this only if the green new icon is showing
+  if ( isNew ) {
+    // Display the user's alerts
+    createAlert('Victoria accepted your friend request.', 'NEW');
+    createAlert('Dale sent you a friend request.', 'REVIEW');
+    // Remove the new status from the notificationBell
+    newAlerts.style.display = 'none';
+    // Change value to false so that user click multiple times
+    isNew = false;
+  }
+
+
 });
 
 // Message User Widget:
