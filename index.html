@@ -200,8 +200,8 @@
           <div id="settings" class="col-6">
             <h2>Settings</h2>
             <form action="#" method="post" class="profile-settings">
-              <label class="switch-light switch-ios" onclick="">
-                <input type="checkbox">
+              <label for="email-settings" class="switch-light switch-ios" onclick="">
+                <input type="checkbox" id="email-settings">
                 <strong>
                   Send Email Notifications
                 </strong>
@@ -211,8 +211,8 @@
                   <a></a>
                 </span>
               </label>
-              <label class="switch-light switch-ios" onclick="">
-                <input type="checkbox">
+              <label for="profile-status" class="switch-light switch-ios" onclick="">
+                <input id="profile-status" type="checkbox">
                 <strong>
                 Set Profile to Public
                 </strong>
@@ -222,15 +222,16 @@
                   <a></a>
                 </span>
               </label>
-              <select class="timezone" name="timezone">
+              <select class="timezone" name="timezone" required oninvalid="this.setCustomValidity('Please select a timezone to save your changes!')" oninput="this.setCustomValidity('')">
+                <option value="" selected disabled>Select your timezone</option>
                 <option value="eastern">Eastern</option>
                 <option value="central">Central</option>
                 <option value="mountain">Mountain</option>
                 <option value="arizona">Arizona</option>
                 <option value="pacific">Pacific</option>
               </select>
-              <button class="btn btn--default" type="submit" name="save">Save</button>
-              <button class="btn btn--cancel" type="reset" name="button">Cancel</button>
+              <button class="btn btn--default save" type="submit" name="save">Save</button>
+              <button class="btn btn--cancel reset" type="reset" name="button">Cancel</button>
             </form>
           </div>
         </div>
