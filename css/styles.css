@@ -495,6 +495,9 @@ textarea:focus {
   .logo {
     margin: 1em auto 1em 1em;
   }
+  .main-nav li {
+    border-bottom-color: transparent;
+  }
   .bell {
     border-right: 1px solid #4c4b70;
     padding: 0.7em;
