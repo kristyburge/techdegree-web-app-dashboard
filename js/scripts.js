@@ -233,7 +233,6 @@ function newSession(){
         const firstEl = document.querySelector('select');
         firstEl.firstElementChild.removeAttribute('selected');
         // Add selected attribute to the correct timezone
-        // TODO: Loop through??
         const options = document.querySelectorAll('option');
         for (let i = 0; i < options.length; i++) {
           if (options[i].value === userSettings.timezone) {
@@ -245,7 +244,39 @@ function newSession(){
   }
 }
 
-newSession();
-// TODO: Why doesn't the reset button work once the page is reloaded? Set up a condition.
+function clearSettings(){
+  // Fix 'cancel' reset button to clear settings in local storage and visually to user
+    const clearSettings = {
+      email: false,
+      profile: false,
+      timezone: ''
+    };
+
+    // save to local STORAGE
+    localStorage.setItem('settings', JSON.stringify(clearSettings));
+    // update the DOM
+    for (var key in clearSettings) {
+      if (key === 'email') {
+        emailSettings.removeAttribute('checked');
+      } else if (key === 'profile') {
+        profileSettings.removeAttribute('checked');
+      } else if (key === 'timezone') {
+          // Remove selected attribute from the previous option
+          const options = document.querySelectorAll('option');
+          for (let i = 0; i < options.length; i++) {
+            if (options[i].hasAttribute('selected')) {
+              options[i].removeAttribute('selected');
+            }
+          }
+          // Add selected attribute to the default option
+          const firstEl = document.querySelector('select');
+          firstEl.firstElementChild.setAttribute('selected', '');
+        }
+      }
+ }
 
 form.addEventListener('submit', saveSettings);
+form.addEventListener('reset', clearSettings);
+
+// Load page
+newSession();
