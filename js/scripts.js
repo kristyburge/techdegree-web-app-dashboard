@@ -202,7 +202,7 @@ const emailSettings = document.getElementById('email-settings');
 const profileSettings = document.getElementById('profile-status');
 const timezone = document.querySelector('.timezone');
 // Persist the state of the settings in the HTML on page load
-const userSettings = JSON.parse(localStorage.getItem('settings')) || {email: false, profile: false, timezone: ''};
+const loadSettings = JSON.parse(localStorage.getItem('settings')) || {email: false, profile: false, timezone: ''};
 
 function saveSettings(e){
     e.preventDefault();
@@ -222,20 +222,20 @@ function saveSettings(e){
   }
 
 function newSession(){
-  for (var key in userSettings) {
-    if (key === 'email' && userSettings[key] === true) {
-      emailSettings.setAttribute('checked', userSettings[key]);
-    } else if (key === 'profile' && userSettings[key] === true) {
-      profileSettings.setAttribute('checked', userSettings[key]);
+  for (var key in loadSettings) {
+    if (key === 'email' && loadSettings[key] === true) {
+      emailSettings.setAttribute('checked', loadSettings[key]);
+    } else if (key === 'profile' && loadSettings[key] === true) {
+      profileSettings.setAttribute('checked', loadSettings[key]);
     } else if (key === 'timezone') {
-      if (userSettings.timezone !== '') {
+      if (loadSettings.timezone !== '') {
         // Remove selected attribute from the "Select your timezone" option
         const firstEl = document.querySelector('select');
         firstEl.firstElementChild.removeAttribute('selected');
         // Add selected attribute to the correct timezone
         const options = document.querySelectorAll('option');
         for (let i = 0; i < options.length; i++) {
-          if (options[i].value === userSettings.timezone) {
+          if (options[i].value === loadSettings.timezone) {
             options[i].setAttribute('selected', '');
           }
         }
