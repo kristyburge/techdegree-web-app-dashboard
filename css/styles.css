@@ -641,7 +641,7 @@ textarea:focus {
     justify-content: center;
   }
   .display, .mobile {
-    justify-content: space-around;
+    justify-content: flex-start;
   }
   .traffic {
     min-height: 670px;
