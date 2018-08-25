@@ -65,6 +65,7 @@ h2 {
   position: relative;
   top: 15px;
   left: 20px;
+  cursor: pointer;
 }
 
 .mobile-nav span {
@@ -75,7 +76,6 @@ h2 {
   background: #444;
   border: 1px solid #333;
   transition: transform 0.7s, opacity 0.3s;
-  cursor: pointer;
 }
 
 .mobile-nav.open span:first-child {
@@ -640,8 +640,7 @@ textarea:focus {
     justify-content: space-around;
   }
   .traffic {
-    height: 600px;
-    display: block;
+    max-height: 550px;
   }
   .chart-container {
     margin: 20px 0;
