@@ -212,6 +212,7 @@ h2 {
   margin: 0;
   max-width: 1150px;
   position: relative;
+  overflow: hidden;
 }
 
 .row {
@@ -231,11 +232,15 @@ h2 {
 
 .traffic {
   height: 350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 .daily,
 .mobile {
-  height: 375px;
+  max-height: 375px;
+  padding-bottom: 2em;
 }
 
 .footer {
@@ -256,6 +261,10 @@ h2 {
 [class*='col-'] {
   width: 100%;
   box-sizing: border-box;
+}
+
+.col-4 {
+  width: 90%;
 }
 
 .clearfix {
@@ -327,6 +336,7 @@ h2 {
 .more {
   display: inline-block;
   float: right;
+  margin-right: 16px;
   margin-top: -10px;
   font-size: 2em;
   font-weight: 700;
@@ -400,7 +410,7 @@ h2 {
 }
 
 .user-search,
-.timezone, 
+.timezone,
 input[type="text"],
 textarea {
   width: 87%;
@@ -534,11 +544,12 @@ textarea:focus {
   }
   .main-nav{
     display: flex;
-    height: 100vh;
+    height: 100%;
     display: flex;
     flex-direction: column;
     list-style: none;
     background: #4c4b70;
+	  padding-bottom: 40px;
   }
   .main-nav li {
     border-left: 8px solid transparent;
@@ -592,6 +603,12 @@ textarea:focus {
   }
   .traffic {
     height: 450px;
+    justify-content: flex-start;
+  }
+  .daily, .mobile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   .switch-ios.switch-light > strong {
@@ -619,8 +636,12 @@ textarea:focus {
     margin-bottom: 20px;
     justify-content: center;
   }
+  .display, .mobile {
+    justify-content: space-around;
+  }
   .traffic {
     height: 600px;
+    display: block;
   }
   .chart-container {
     margin: 20px 0;
