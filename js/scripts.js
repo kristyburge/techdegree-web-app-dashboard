@@ -1,5 +1,4 @@
 // Alert notifications
-const close = document.querySelectorAll('.close');
 const alertBox = document.querySelectorAll('.alert');
 const notificationBell = document.querySelector('.bell-container');
 const row = document.querySelector('.row');
@@ -9,7 +8,6 @@ let isNew = true;
 const message = document.querySelector('.user-message');
 const submit = document.querySelector('#message-user');
 const userInput = document.querySelector('.user-search');
-const suggest = document.querySelector('.suggest');
 
 // Toggle mobile nav menu
 function toggleNav(){
@@ -118,9 +116,6 @@ notificationBell.addEventListener('click', function(){
         suggestList.classList.add('suggest');
         searchContainer.appendChild(suggestList);
 
-        // listen for keyup and change events to display user matches
-        contactForm.addEventListener('keyup', displayMatches);
-        contactForm.addEventListener('change', displayMatches);
       });
     }
  });

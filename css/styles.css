@@ -640,7 +640,7 @@ textarea:focus {
     justify-content: space-around;
   }
   .traffic {
-    max-height: 550px;
+    min-height: 670px;
   }
   .chart-container {
     margin: 20px 0;
