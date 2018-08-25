@@ -113,6 +113,14 @@ notificationBell.addEventListener('click', function(){
         // Remove thanks message and new button
         thanks.style.display = 'none';
         newBtn.style.display = 'none';
+        // Reset the unordered list container
+        const suggestList = document.createElement('UL');
+        suggestList.classList.add('suggest');
+        searchContainer.appendChild(suggestList);
+
+        // listen for keyup and change events to display user matches
+        contactForm.addEventListener('keyup', displayMatches);
+        contactForm.addEventListener('change', displayMatches);
       });
     }
  });
@@ -151,47 +159,65 @@ function findMatches(userToMatch, users) {
   });
 }
 
-function displayMatches(){
-  // Get the data
-  const matchArray = findMatches(this.value, users)
+function displayMatches(e){
 
-  // Loop over the data
-  const html = matchArray.map(user => {
-    return `
-      <li class="suggest-member">${user.first} ${user.last}<input type="hidden" value="${user.first} ${user.last}">
-      </li>
-    `;
-  }).join('');
+  openList();
+  if (e.target.tagName === 'INPUT') {
 
-  // Append the suggestions to the html
-  suggest.innerHTML = html;
+    // Save the array of suggested members
+    const suggestions = document.querySelectorAll('.suggest-member');
 
-  // Save the array of suggested members
-  const suggestions = document.querySelectorAll('.suggest-member');
+    // Loop through the suggestions and listen for click event
+    suggestions.forEach(function(suggestion){
+      suggestion.addEventListener('click', function(){
+        // Save the value of the click and use in the input
+        const save = suggestion.firstElementChild.value;
+        userInput.value = save;
 
-  // Loop through the suggestions and listen for click event
-  suggestions.forEach(function(suggestion){
-    suggestion.addEventListener('click', function(){
-      // Save the value of the click and use in the input
-      const save = suggestion.firstElementChild.value;
-      userInput.value = save;
+        // Toggle the active class on click
+        suggestion.classList.toggle('item-active');
 
-      // Toggle the active class on click
-      suggestion.classList.toggle('item-active');
+        closeList();
+
+      });
     });
-  });
+  }
 }
 
+function closeList(){
+  // Remove the ul list when a username is selected
+  const allMembers = document.querySelectorAll('.suggest-member');
+  console.log(allMembers);
 
-// TODO: Remove the other list items when one is selected.
+  allMembers.forEach(function(person){
+    suggest.removeChild(person);
+  });
+
+}
+
+// TODO: This function is running too many times.
+function openList(){
+  // Get the data
+  const matchArray = findMatches(this.value, users)
+  // Loop over the data
+  let listItem;
+  for (user in matchArray) {
+    listItem = document.createElement('LI');
+    listItem.classList.add('suggest-member');
+    const listContent = `${matchArray[user].first} ${matchArray[user].last}<input type="hidden" value="${matchArray[user].first} ${matchArray[user].last}">`;
+    listItem.innerHTML = listContent;
+    // Append the suggestions to the html
+    suggest.appendChild(listItem);
+  }
+}
 
 // TODO: Open the list if user starts to type again.
 
-
+const contactForm = document.querySelector('.contact-form');
 
 // listen for keyup and change events to display user matches
-userInput.addEventListener('keyup', displayMatches);
-userInput.addEventListener('change', displayMatches);
+contactForm.addEventListener('keyup', displayMatches);
+contactForm.addEventListener('change', displayMatches);
 
 
 // ==============================
@@ -203,6 +229,9 @@ const profileSettings = document.getElementById('profile-status');
 const timezone = document.querySelector('.timezone');
 // Persist the state of the settings in the HTML on page load
 const loadSettings = JSON.parse(localStorage.getItem('settings')) || {email: false, profile: false, timezone: ''};
+
+const searchContainer = document.querySelector('.search-container');
+
 
 function saveSettings(e){
     e.preventDefault();
@@ -242,6 +271,7 @@ function newSession(){
       }
     }
   }
+
 }
 
 function clearSettings(){
