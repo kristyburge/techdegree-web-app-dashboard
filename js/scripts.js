@@ -125,100 +125,6 @@ notificationBell.addEventListener('click', function(){
     }
  });
 
- // ===================
- // SEARCH USERS
- // ===================
-// const endpoint = 'https://uinames.com/api/?region=united%20states&amount=50';
-const users = [
-  {
-    first: 'Victoria',
-    last: 'Chambers'
-  },
-  {
-    first: 'Dale',
-    last: 'Byrd'
-  },
-  {
-    first: 'Dawn',
-    last: 'Wood'
-  },
-  {
-    first: 'Dan',
-    last: 'Oliver'
-  }
-];
-
-// fetch(endpoint)
-//   .then(blob => blob.json())
-//   .then(data => users.push(...data));
-
-function findMatches(userToMatch, users) {
-  return users.filter(person => {
-    const regex = new RegExp(userToMatch, 'gi');
-    return person.first.match(regex) || person.last.match(regex);
-  });
-}
-
-function displayMatches(e){
-
-  openList();
-  if (e.target.tagName === 'INPUT') {
-
-    // Save the array of suggested members
-    const suggestions = document.querySelectorAll('.suggest-member');
-
-    // Loop through the suggestions and listen for click event
-    suggestions.forEach(function(suggestion){
-      suggestion.addEventListener('click', function(){
-        // Save the value of the click and use in the input
-        const save = suggestion.firstElementChild.value;
-        userInput.value = save;
-
-        // Toggle the active class on click
-        suggestion.classList.toggle('item-active');
-
-        closeList();
-
-      });
-    });
-  }
-}
-
-function closeList(){
-  // Remove the ul list when a username is selected
-  const allMembers = document.querySelectorAll('.suggest-member');
-  console.log(allMembers);
-
-  allMembers.forEach(function(person){
-    suggest.removeChild(person);
-  });
-
-}
-
-// TODO: This function is running too many times.
-function openList(){
-  // Get the data
-  const matchArray = findMatches(this.value, users)
-  // Loop over the data
-  let listItem;
-  for (user in matchArray) {
-    listItem = document.createElement('LI');
-    listItem.classList.add('suggest-member');
-    const listContent = `${matchArray[user].first} ${matchArray[user].last}<input type="hidden" value="${matchArray[user].first} ${matchArray[user].last}">`;
-    listItem.innerHTML = listContent;
-    // Append the suggestions to the html
-    suggest.appendChild(listItem);
-  }
-}
-
-// TODO: Open the list if user starts to type again.
-
-const contactForm = document.querySelector('.contact-form');
-
-// listen for keyup and change events to display user matches
-contactForm.addEventListener('keyup', displayMatches);
-contactForm.addEventListener('change', displayMatches);
-
 
 // ==============================
 // SAVE SETTINGS TO LOCAL STORAGE
@@ -229,7 +135,6 @@ const profileSettings = document.getElementById('profile-status');
 const timezone = document.querySelector('.timezone');
 // Persist the state of the settings in the HTML on page load
 const loadSettings = JSON.parse(localStorage.getItem('settings')) || {email: false, profile: false, timezone: ''};
-
 const searchContainer = document.querySelector('.search-container');
 
 
@@ -244,34 +149,54 @@ function saveSettings(e){
       profile: profile,
       timezone: time
     };
-    console.log(userSettings);
+    // console.log(userSettings);
 
     // Save to local Storage
     localStorage.setItem('settings', JSON.stringify(userSettings));
-  }
 
-function newSession(){
-  for (var key in loadSettings) {
-    if (key === 'email' && loadSettings[key] === true) {
-      emailSettings.setAttribute('checked', loadSettings[key]);
-    } else if (key === 'profile' && loadSettings[key] === true) {
-      profileSettings.setAttribute('checked', loadSettings[key]);
+    // TODO: Display changes to user
+    newSession(userSettings);
+
+}
+
+function newSession(settings){
+  for (var key in settings) {
+  const tzOptions = timezone.children;
+
+    if (key === 'email' && settings[key] === true) {
+      emailSettings.setAttribute('checked', settings[key]);
+    } else if (key === 'profile' && settings[key] === true) {
+      profileSettings.setAttribute('checked', settings[key]);
     } else if (key === 'timezone') {
-      if (loadSettings.timezone !== '') {
-        // Remove selected attribute from the "Select your timezone" option
-        const firstEl = document.querySelector('select');
-        firstEl.firstElementChild.removeAttribute('selected');
-        // Add selected attribute to the correct timezone
-        const options = document.querySelectorAll('option');
-        for (let i = 0; i < options.length; i++) {
-          if (options[i].value === loadSettings.timezone) {
-            options[i].setAttribute('selected', '');
-          }
+      // Get current timezone
+      const currentTz = settings.timezone;
+
+      if (currentTz !== '') {
+        // Remove selected from the default option
+        timezone.firstElementChild.removeAttribute('selected');
+
+        // Add selected to the current option
+        for (let i = 1; i < tzOptions.length; i++) {
+            if ( currentTz === tzOptions[i].value ) {
+              tzOptions[i].setAttribute('selected', '');
+            } else {
+              tzOptions[i].removeAttribute('selected');
+            }
         }
+
+      } else {
+        // Remove selected from all timezones
+        for (let i = 0; i < tzOptions.length; i++) {
+            if ( currentTz !== tzOptions[i].value ) {
+              tzOptions[i].removeAttribute('selected');
+            } else {
+              tzOptions[i].setAttribute('selected', '');
+            }
+        }
+
       }
     }
   }
-
 }
 
 function clearSettings(){
@@ -284,6 +209,7 @@ function clearSettings(){
 
     // save to local STORAGE
     localStorage.setItem('settings', JSON.stringify(clearSettings));
+
     // update the DOM
     for (var key in clearSettings) {
       if (key === 'email') {
@@ -291,22 +217,16 @@ function clearSettings(){
       } else if (key === 'profile') {
         profileSettings.removeAttribute('checked');
       } else if (key === 'timezone') {
-          // Remove selected attribute from the previous option
-          const options = document.querySelectorAll('option');
-          for (let i = 0; i < options.length; i++) {
-            if (options[i].hasAttribute('selected')) {
-              options[i].removeAttribute('selected');
-            }
-          }
-          // Add selected attribute to the default option
-          const firstEl = document.querySelector('select');
-          firstEl.firstElementChild.setAttribute('selected', '');
+        timezone.firstElementChild.setAttribute('selected', '');
+        for (let i = 1; i < timezone.children.length; i++) {
+          timezone.children[i].removeAttribute('selected');
         }
       }
+    }
  }
 
 form.addEventListener('submit', saveSettings);
 form.addEventListener('reset', clearSettings);
 
 // Load page
-newSession();
+newSession(loadSettings);

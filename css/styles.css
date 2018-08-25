@@ -400,6 +400,7 @@ h2 {
 }
 
 .user-search,
+.timezone, 
 input[type="text"],
 textarea {
   width: 87%;
