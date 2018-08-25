@@ -246,7 +246,7 @@ h2 {
 }
 
 .traffic {
-  height: 350px;
+  height: 420px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -640,8 +640,11 @@ textarea:focus {
     margin-bottom: 20px;
     justify-content: center;
   }
-  .display, .mobile {
-    justify-content: flex-start;
+  .daily, .mobile {
+    justify-content: center;
+  }
+  .daily {
+    padding-top: 1em;
   }
   .traffic {
     min-height: 670px;
