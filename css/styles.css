@@ -416,6 +416,10 @@ textarea:focus {
   background-color: #fefefe;
 }
 
+select#select-user {
+    width: 91%;
+}
+
 .suggest {
   padding-left: 0;
 }
@@ -476,7 +480,7 @@ textarea:focus {
 #settings select {
   display: block;
   margin: 0 0 20px;
-  width: 60%;
+  width: 95%;
 }
 
 .switch-ios.switch-light {
@@ -490,6 +494,17 @@ textarea:focus {
 .switch-ios.switch-light input:checked ~ span a {
   left: 90%;
 }
+
+.switch-ios.switch-light input:checked ~ span a {
+   left: 100%;
+   border-color: #4c4b70;
+   margin-left: -2em;
+ }
+
+ .switch-ios.switch-light input:checked ~ span {
+   border-color: #4c4b70;
+   box-shadow: inset 0 0 0 30px #4c4b70;
+ }
 
 .bell-container {
   position: relative;
